@@ -1,58 +1,50 @@
-import { auth_constants } from 'constants/auth.constants';
+import {
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    REGISTER_REQUEST,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+} from 'constants/auth.constants'; import { IUser } from './user.interfaces';
 
-export interface IUser {
+export interface IAuth {
 
 }
 
-export interface UserState {
+export interface AuthState {
     loading: boolean
     userInfo: IUser
     error?: ''
 }
 
 // actions
-interface LoginRequestAction {
-    type: typeof auth_constants.LOGIN_REQUEST
-    payload: boolean
-}
-
+interface LoginRequestAction { type: typeof LOGIN_REQUEST }
 interface LoginSuccessAction {
-    type: typeof auth_constants.LOGIN_SUCCESS
-    payload: UserState
+    type: typeof LOGIN_SUCCESS
+    payload: IUser
 }
-
 interface LoginFailAction {
-    type: typeof auth_constants.LOGIN_FAIL
-    payload: {
-        loading: boolean
-        error: string
-    }
+    type: typeof LOGIN_FAIL
+    payload: string
 }
 
-interface RegisterRquestlAction {
-    type: typeof auth_constants.REGISTER_REQUEST
-    payload: {
-        loading: boolean
-        error: string
-    }
-}
 
+
+
+interface RegisterRquestlAction { type: typeof REGISTER_REQUEST }
 interface RegisterSuccessAction {
-    type: typeof auth_constants.REGISTER_SUCCESS
-    payload: UserState
+    type: typeof REGISTER_SUCCESS
+    payload: IUser
 }
-
 interface RegisterFailAction {
-    type: typeof auth_constants.REGISTER_FAIL
-    payload: {
-        loading: boolean
-        error: string
-    }
+    type: typeof REGISTER_FAIL
+    payload: string
 }
 
-interface LogoutAction {
-    type: typeof auth_constants.LOGOUT
-    payload: {}
-}
+
+
+interface LogoutAction { type: typeof LOGOUT }
+
 
 export type AuthActions = LoginRequestAction | LoginSuccessAction | LoginFailAction | LogoutAction | RegisterFailAction | RegisterRquestlAction | RegisterSuccessAction;
