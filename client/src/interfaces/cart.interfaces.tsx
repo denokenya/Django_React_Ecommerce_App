@@ -29,7 +29,7 @@ export interface IShippingAddress {
 export interface CartState {
     cartItems: IOrderItem[]
     shippingAddress: IShippingAddress | null
-    paymentMethod: string 
+    paymentMethod: any 
 }
 
 // actions

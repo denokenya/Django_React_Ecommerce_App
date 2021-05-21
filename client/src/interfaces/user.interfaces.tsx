@@ -19,8 +19,14 @@ import {
     USER_UPDATE_FAIL,
     USER_UPDATE_RESET,
  } from 'constants/user.constants';
+ 
 export interface IUser {
-
+    id: string
+    username: string
+    name: string
+    email: string
+    password: string
+    confirmationPassword: string
 }
 
 export interface UserInfo {
