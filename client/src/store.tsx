@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import reducers from 'reducers';
@@ -15,11 +15,11 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ?
     JSON.parse(localStorage.getItem('shippingAddress') as string) : {}
 
 const initialState = {
-    savedCart: {
+    cart: {
         cartItems: cartItemsFromStorage,
         shippingAddress: shippingAddressFromStorage,
     },
-    savedAuth: { userInfo: userInfoFromStorage },
+    auth: { userInfo: userInfoFromStorage },
 }
 
 const middleware = [thunk]
@@ -27,5 +27,6 @@ const middleware = [thunk]
 // @ts-ignore
 const store = createStore(reducers, initialState,
     composeWithDevTools(applyMiddleware(...middleware)))
+export type RootState = ReturnType<typeof reducers>
 
 export default store

@@ -10,7 +10,7 @@ import {
 import { AuthActions, AuthState } from 'interfaces/auth.interfaces';
 
 const initialState: AuthState = {
-    userInfo: {},
+    userInfo: undefined,
     loading: false,
     error: ''
 }

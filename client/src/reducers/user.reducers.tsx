@@ -25,8 +25,6 @@ const initialState: UserState = {
     success: false,
     loading: false,
     users: [],
-    user: {},
-    userInfo: {},
     error: ''
 }
 

@@ -1,11 +1,9 @@
 import { Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-// screens
-import HomeScreen from 'screens/HomeScreen';
-import ProductScreen from 'screens/ProductScreen';
+import AppRoutes from 'components/AppRoutes';
 
 const App = () => {
   return (
@@ -13,8 +11,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
-          <Route path="/" component={HomeScreen} exact />
-          <Route path="/product/:id"  component={ProductScreen} />
+          <AppRoutes />
         </Container>
       </main>
       <Footer />

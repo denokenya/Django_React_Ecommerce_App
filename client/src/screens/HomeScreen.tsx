@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import products_data from 'product_data';
 import { IProduct } from 'interfaces/product.interface';
 import Product from 'components/Product';
 import axios from 'axios';

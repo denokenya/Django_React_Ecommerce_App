@@ -27,6 +27,7 @@ export interface IUser {
     email: string
     password: string
     confirmationPassword: string
+    isAdmin: boolean
 }
 
 export interface UserInfo {
@@ -39,8 +40,8 @@ export interface UserState {
     success: boolean
     loading: boolean
     users: IUser[]
-    user: IUser
-    userInfo: IUser
+    user?: IUser
+    userInfo?: IUser
     error: string
 }
 
