@@ -9,3 +9,26 @@ h3 {
 .rating span {
     margin: 0.2rem;
 }
+
+.edit_form_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    height: 50px;
+    width: 100%;
+    margin: 4px 0;
+}
+
+.edit_form_input input {
+    display: inline;
+}
+
+.edit_form_input p {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.edit_form_input .fas {
+    cursor: pointer;
+}

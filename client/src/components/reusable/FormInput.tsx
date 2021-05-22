@@ -2,7 +2,7 @@ import { FC, InputHTMLAttributes } from 'react'
 import { Form } from 'react-bootstrap'
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement>{
-    label: string
+    label?: string
     value: any
 }
 

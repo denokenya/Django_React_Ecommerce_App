@@ -21,13 +21,15 @@ import {
  } from 'constants/user.constants';
  
 export interface IUser {
+    _id?: string
     id: string
-    username: string
+    username?: string
     name: string
     email: string
     password: string
-    confirmationPassword: string
-    isAdmin: boolean
+    confirmationPassword?: string
+    isAdmin?: boolean
+    token?: string
 }
 
 export interface UserInfo {
@@ -86,7 +88,10 @@ interface GetUsersReset { type: typeof USER_LIST_RESET }
 
 
 interface DeleteUserRequest { type: typeof USER_DELETE_REQUEST }
-interface DeleteUserSuccess { type: typeof USER_DELETE_SUCCESS }
+interface DeleteUserSuccess { 
+    type: typeof USER_DELETE_SUCCESS 
+    payload: IUser
+}
 interface DeleteUserFail {
     type: typeof USER_DELETE_FAIL
     payload: string

@@ -9,7 +9,6 @@ const Header = () => {
     const dispatch = useDispatch();
     const { auth } = useSelector((state: RootState) => state);
     const { userInfo } = auth;
-    console.log(userInfo);
 
     const handleLogout = () => dispatch(logout());
 
@@ -30,7 +29,7 @@ const Header = () => {
                                     <i className="fas fa-shopping-cart"></i> Cart
                             </Nav.Link>
                             </LinkContainer>
-                            {userInfo ? (
+                            {userInfo && !(userInfo as IUser).isAdmin ? (
                                 <NavDropdown title={(userInfo as IUser).name} id='username'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>Profile</NavDropdown.Item>
@@ -46,6 +45,9 @@ const Header = () => {
                             )}
                             {userInfo && (userInfo as IUser).isAdmin && (
                                 <NavDropdown title='Admin' id='adminmenue'>
+                                    <LinkContainer to='/profile'>
+                                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    </LinkContainer>
                                     <LinkContainer to='/admin/userlist'>
                                         <NavDropdown.Item>Users</NavDropdown.Item>
                                     </LinkContainer>
