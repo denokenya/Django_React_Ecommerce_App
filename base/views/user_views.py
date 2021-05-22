@@ -5,7 +5,8 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 from django.contrib.auth.models import User
-from base.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
+from base.serializers.user_serializers import UserSerializer, UserSerializerWithToken
+from base.serializers.product_serializers import Product
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
