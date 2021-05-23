@@ -1,6 +1,6 @@
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { RootState } from 'store';
 import { register } from 'actions/auth.actions';
 import FormContainer from 'components/reusable/FormContainer';
@@ -19,23 +19,16 @@ const RegisterData = {
 
 const RegisterScreen = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const location = useLocation();
     const { auth } = useSelector((state: RootState) => state);
-    const { error, loading, userInfo } = auth;
+    const { error, loading } = auth;
 
     // state
     const [registerData, setRegisterData] = useState
         (RegisterData);
     const [message, setMessage] = useState('');
     const { name, email, password, confirmPassword } = registerData;
-    const redirect = location.search ? location.search.split('=')[1] : '/'
-
-    useEffect(() => {
-        if (userInfo) {
-            history.push(redirect)
-        }
-    }, [history, userInfo, redirect])
+    const redirect = location.search ? location.search.split('=')[1] : '/';
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()

@@ -53,6 +53,9 @@ interface CartSavePaymentMethod {
     payload: string
 }
 
-interface CartClearItems { type: typeof CART_CLEAR_ITEMS }
+interface CartClearItems { 
+    type: typeof CART_CLEAR_ITEMS 
+    payload: any
+}
 
 export type CartActions = CartAddItem | CartRemoveItem | CartSaveShippingAddress | CartSavePaymentMethod | CartClearItems;

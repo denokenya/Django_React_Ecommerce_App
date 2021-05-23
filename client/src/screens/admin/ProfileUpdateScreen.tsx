@@ -37,7 +37,7 @@ const ProfileUpdateScreen = () => {
         } else {
             // @ts-ignore
             if (!(user as IUser).name || (user as IUser)._id !== Number(id)) {
-                dispatch(getUserDetails(id, userInfo))
+                dispatch(getUserDetails(id))
             } else {
                 setUserData({
                     name: (user as IUser).name,

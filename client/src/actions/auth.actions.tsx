@@ -37,7 +37,7 @@ export const login = (email: string, password: string) => async (dispatch: Dispa
             payload: data
         })
 
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('user', JSON.stringify(data))
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
@@ -68,7 +68,7 @@ export const register = (name: string, email: string, password: string) => async
             payload: data
         });
 
-        localStorage.setItem('userInfo', JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(data));
     } catch (error) {
         dispatch({
             type: REGISTER_FAIL,
@@ -80,7 +80,7 @@ export const register = (name: string, email: string, password: string) => async
 }
 
 export const logout = () => (dispatch: Dispatch<AuthActions | UserActions | OrderActions>) => {
-    localStorage.removeItem('userInfo')
+    localStorage.removeItem('user')
     dispatch({ type: LOGOUT })
     dispatch({ type: USER_DETAILS_RESET })
     dispatch({ type: ORDER_LIST_MY_RESET })

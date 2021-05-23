@@ -13,9 +13,10 @@ export interface IAuth {
 }
 
 export interface AuthState {
-    loading: boolean
-    userInfo?: IUser
-    error?: ''
+    authLoading: boolean
+    loggedInUser: IUser | null
+    isAuth: false
+    authError: ''
 }
 
 // actions

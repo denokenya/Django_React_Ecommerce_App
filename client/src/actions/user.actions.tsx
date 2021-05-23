@@ -20,20 +20,12 @@ import { IUser, UserActions } from 'interfaces/user.interfaces';
 import { Dispatch } from 'react';
 import axios from 'axios';
 import { AuthActions } from 'interfaces/auth.interfaces';
+import { config } from 'utils';
 
-const getConfig = (token: string) => {
-    return {
-        headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`
-        }
-    }
-}
 
-export const getUserDetails = (id: string, userInfo: IUser) => async (dispatch: Dispatch<UserActions>, getState: any) => {
+export const getUserDetails = (id: string) => async (dispatch: Dispatch<UserActions>, getState: any) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
-        const config = getConfig(userInfo.token as string);
 
         // get user details
         const { data } = await axios.get(
@@ -55,12 +47,9 @@ export const getUserDetails = (id: string, userInfo: IUser) => async (dispatch: 
     }
 }
 
-export const getUsers = () => async (dispatch: Dispatch<UserActions>, getState: any) => {
+export const getUsers = () => async (dispatch: Dispatch<UserActions>) => {
     try {
         dispatch({ type: USER_LIST_REQUEST });
-
-        const { auth: { userInfo } } = getState();
-        const config = getConfig(userInfo.token);
 
         // get users
         const { data } = await axios.get(
@@ -82,12 +71,9 @@ export const getUsers = () => async (dispatch: Dispatch<UserActions>, getState: 
     }
 }
 
-export const updateProfile = (user: IUser) => async (dispatch: Dispatch<UserActions | AuthActions>, getState: any) => {
+export const updateProfile = (user: IUser) => async (dispatch: Dispatch<UserActions | AuthActions>) => {
     try {
         dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
-
-        const { auth: { userInfo } } = getState();
-        const config = getConfig(userInfo.token);
 
         // update user
         const { data } = await axios.put(
@@ -117,15 +103,9 @@ export const updateProfile = (user: IUser) => async (dispatch: Dispatch<UserActi
     }
 }
 
-export const deleteUser = (id: string) => async (dispatch: Dispatch<UserActions>, getState: any) => {
+export const deleteUser = (id: string) => async (dispatch: Dispatch<UserActions>) => {
     try {
         dispatch({ type: USER_DELETE_REQUEST });
-
-        const {
-            userLogin: { userInfo },
-        } = getState();
-        const config = getConfig(userInfo.token);
-
 
         // delete user
         const { data } = await axios.delete(
@@ -151,7 +131,6 @@ export const deleteUser = (id: string) => async (dispatch: Dispatch<UserActions>
 export const updateUser = (user: IUser) => async (dispatch: Dispatch<UserActions>) => {
     try {
         dispatch({ type: USER_UPDATE_REQUEST });
-        const config = getConfig(user.token as string);
 
         // update user for admin 
         const { data } = await axios.put(

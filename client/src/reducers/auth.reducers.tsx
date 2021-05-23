@@ -10,45 +10,59 @@ import {
 import { AuthActions, AuthState } from 'interfaces/auth.interfaces';
 
 const initialState: AuthState = {
-    userInfo: undefined,
-    loading: false,
-    error: ''
+    isAuth: false,
+    loggedInUser: null,
+    authLoading: false,
+    authError: ''
 }
 
 const authReducer = (state = initialState, action: AuthActions) => {
     switch (action.type) {
         case LOGIN_REQUEST:
-            return { loading: true }
+            return { 
+                ...state,
+                loading: true
+             }
 
         case LOGIN_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 userInfo: action.payload
             }
 
         case LOGIN_FAIL:
             return {
+                ...state,
                 loading: false,
                 error: action.payload
             }
 
         case REGISTER_REQUEST:
-            return { loading: true }
+            return { 
+                ...state,
+                loading: true 
+            }
 
         case REGISTER_SUCCESS:
             return {
                 loading: false,
+                isAuth: true,
                 userInfo: action.payload
             }
 
         case REGISTER_FAIL:
             return {
+                ...state,
                 loading: false,
                 error: action.payload
             }
 
         case LOGOUT:
-            return {}
+            return {
+                ...state,
+                isAuth: false
+            }
 
         default:
             return state

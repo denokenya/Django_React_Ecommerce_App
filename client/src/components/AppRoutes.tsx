@@ -7,16 +7,20 @@ import RegisterScreen from 'screens/auth/RegisterScreen';
 import ProfileScreen from 'screens/ProfileScreen';
 import ProfileUpdateScreen from 'screens/admin/ProfileUpdateScreen';
 import UserListScreen from 'screens/admin/UserListScreen';
+// routes
+import PrivateRoute from './auth/PrivateRoute';
+import PublicRoute from './auth/PublicRoute';
 
 const AppRoutes = () => {
     return (
         <Container>
-            <Route path='/' component={HomeScreen} exact />
-            <Route path="/auth/login" component={LoginScreen} />
-            <Route path="/auth/register" component={RegisterScreen} />
-            <Route path='/profile' component={ProfileScreen} />
-            <Route path='/admin/user/:id/update' component={ProfileUpdateScreen} />
-            <Route path='/admin/userlist' component={UserListScreen} />
+            <PublicRoute restricted={false} path='/' component={HomeScreen} exact />
+            <PublicRoute restricted={true} path="/auth/login" component={LoginScreen} />
+            <PublicRoute restricted={true} path="/auth/register" component={RegisterScreen} />
+
+            <PrivateRoute path='/profile' component={ProfileScreen} />
+            <PrivateRoute path='/admin/:id/update' component={ProfileUpdateScreen} />
+            <PrivateRoute path='/admin/userlist' component={UserListScreen} />
         </Container>
     )
 }

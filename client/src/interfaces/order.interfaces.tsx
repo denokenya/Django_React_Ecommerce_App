@@ -71,7 +71,10 @@ interface OrderDetailsFail {
 
 
 interface OrderPayRerquest { type: typeof ORDER_PAY_REQUEST }
-interface OrderPaySuccess {  type: typeof ORDER_PAY_SUCCESS }
+interface OrderPaySuccess {  
+    type: typeof ORDER_PAY_SUCCESS 
+    payload: any
+}
 interface OrderPayFail {
     type: typeof ORDER_PAY_FAIL
     payload: string
@@ -106,7 +109,10 @@ interface OrderListFail {
 
 
 interface OrderDeliverRerquest { type: typeof ORDER_DELIVER_REQUEST }
-interface OrderDeliverSuccess { type: typeof ORDER_DELIVER_SUCCESS }
+interface OrderDeliverSuccess { 
+    type: typeof ORDER_DELIVER_SUCCESS 
+    payload: IOrder
+}
 interface OrderDeliverFail {
     type: typeof ORDER_DELIVER_FAIL
     payload: string

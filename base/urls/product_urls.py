@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('<str:pk>/reviews/', views.addProductReview, name="create-review"),
     path('top/', views.getTopProducts, name='top-products'),
-    path('<str:pk>/', views.getProducts, name="product"),
+    path('<str:pk>/', views.getProduct, name="product"),
 
     path('<str:pk>/update/', views.updateProduct, name="product-update"),
     path('<str:pk>/delete/', views.deleteProduct, name="product-delete"),

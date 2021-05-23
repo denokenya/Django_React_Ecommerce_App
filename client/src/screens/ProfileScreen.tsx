@@ -31,20 +31,16 @@ const ProfileScreen = () => {
     const { userInfo } = state.auth;
 
     useEffect(() => {
-        if (!userInfo) {
-            history.push('/auth/login')
+        if (!user || !(user as IUser).name || success || (userInfo as IUser)._id !== (user as IUser)._id) {
+            dispatch({ type: USER_UPDATE_PROFILE_RESET })
+            dispatch(getUserDetails('profile'));
         } else {
-            if (!user || !(user as IUser).name || success || (userInfo as IUser)._id !== (user as IUser)._id) {
-                dispatch({ type: USER_UPDATE_PROFILE_RESET })
-                dispatch(getUserDetails('profile', userInfo));
-            } else {
-                setProfileData({
-                    name: (user as IUser).name,
-                    email: (user as IUser).email,
-                    password: '',
-                    confirmPassword: ''
-                })
-            }
+            setProfileData({
+                name: (user as IUser).name,
+                email: (user as IUser).email,
+                password: '',
+                confirmPassword: ''
+            })
         }
     }, [dispatch, history, success, user, userInfo]);
 

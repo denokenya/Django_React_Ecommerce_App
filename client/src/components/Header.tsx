@@ -2,16 +2,15 @@ import { logout } from 'actions/auth.actions';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+import { isAdmin, isAuth } from 'utils';
 import { RootState } from 'store';
 import { IUser } from 'interfaces/user.interfaces';
 
 const Header = () => {
     const dispatch = useDispatch();
-    const { auth } = useSelector((state: RootState) => state);
-    const { userInfo } = auth;
-
+    const { loggedInUser } = useSelector((state: RootState) => state.auth);
     const handleLogout = () => dispatch(logout());
-
+    
     return (
         <header>
             <Navbar bg="light" expand="lg">
@@ -29,8 +28,15 @@ const Header = () => {
                                     <i className="fas fa-shopping-cart"></i> Cart
                             </Nav.Link>
                             </LinkContainer>
-                            {userInfo && !(userInfo as IUser).isAdmin ? (
-                                <NavDropdown title={(userInfo as IUser).name} id='username'>
+                            {
+                                !isAuth && (
+                                    <LinkContainer to='/auth/login'>
+                                        <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                    </LinkContainer>
+                                )
+                            }
+                            {isAuth && !isAdmin && (
+                                <NavDropdown title={(loggedInUser as IUser).name} id='username'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>Profile</NavDropdown.Item>
                                     </LinkContainer>
@@ -38,12 +44,8 @@ const Header = () => {
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
 
                                 </NavDropdown>
-                            ) : (
-                                <LinkContainer to='/auth/login'>
-                                    <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
-                                </LinkContainer>
                             )}
-                            {userInfo && (userInfo as IUser).isAdmin && (
+                            {isAuth && isAdmin && (
                                 <NavDropdown title='Admin' id='adminmenue'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>Profile</NavDropdown.Item>

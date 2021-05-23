@@ -24,6 +24,7 @@ import {
     PRODUCT_CREATE_FAIL,
     PRODUCT_CREATE_RESET
 } from 'constants/product.constants'
+import { IUser } from './user.interfaces';
 
 export interface IProduct {
     _id: string
@@ -36,6 +37,16 @@ export interface IProduct {
     countInStock: number
     rating: number
     numReviews: number
+}
+
+export interface IReview {
+    _id: string
+    product: IProduct
+    user: IUser
+    name: string
+    rating: number
+    comment: string
+    createdAt: Date
 }
 
 export interface ProductState {
@@ -74,7 +85,10 @@ interface ProductDetailsFail {
 
 
 interface ProductDeleteRequest { type: typeof PRODUCT_DELETE_REQUEST }
-interface ProductDeleteSuccess { type: typeof PRODUCT_DELETE_SUCCESS }
+interface ProductDeleteSuccess { 
+    type: typeof PRODUCT_DELETE_SUCCESS
+    payload: IProduct
+}
 interface ProductDeleteFail {
     type: typeof PRODUCT_DELETE_FAIL
     payload: string
@@ -109,7 +123,10 @@ interface ProductUpdateReset { type: typeof PRODUCT_UPDATE_RESET }
 
 
 interface ProductCreateReviewRequest { type: typeof PRODUCT_CREATE_REVIEW_REQUEST }
-interface ProductCreateReviewSuccess { type: typeof PRODUCT_CREATE_REVIEW_SUCCESS }
+interface ProductCreateReviewSuccess { 
+    type: typeof PRODUCT_CREATE_REVIEW_SUCCESS 
+    payload: IReview
+}
 interface ProductCreateReviewFail {
     type: typeof PRODUCT_CREATE_REVIEW_FAIL
     payload: string

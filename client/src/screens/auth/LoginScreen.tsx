@@ -1,6 +1,6 @@
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { RootState } from 'store';
 import FormContainer from 'components/reusable/FormContainer';
@@ -13,7 +13,6 @@ import { login } from 'actions/auth.actions';
 
 const LoginScreen = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const location = useLocation();
     const { auth } = useSelector((state: RootState) => state);
 
@@ -22,13 +21,8 @@ const LoginScreen = () => {
     const [password, setPassword] = useState('')
 
     const redirect = location.search ? location.search.split('=')[1] : '/';
-    const { error, loading, userInfo } = auth;
+    const { error, loading } = auth;
 
-    useEffect(() => {
-        if (userInfo) {
-            history.push(redirect)
-        }
-    }, [history, userInfo, redirect])
 
     const submitHandler = (e: FormEvent) => {
         e.preventDefault()
