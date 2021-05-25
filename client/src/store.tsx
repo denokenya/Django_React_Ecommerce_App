@@ -2,31 +2,23 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import reducers from 'reducers';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-// local storage
-const cartItemsFromStorage = localStorage.getItem('cartItems') ?
-    JSON.parse(localStorage.getItem('cartItems') as string) : []
+const middleware = [thunk];
 
-const userInfoFromStorage = localStorage.getItem('userInfo') ?
-    JSON.parse(localStorage.getItem('userInfo') as string) : null
+// redux-persist
+const persistConfig = {
+    key: "root",
+    storage
+};
+const persistedReducer = persistReducer(persistConfig, reducers);
 
+export const store = createStore(
+    persistedReducer, 
+    composeWithDevTools(applyMiddleware(...middleware)));
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ?
-    JSON.parse(localStorage.getItem('shippingAddress') as string) : {}
+export const persistor = persistStore(store);
 
-const initialState = {
-    cart: {
-        cartItems: cartItemsFromStorage,
-        shippingAddress: shippingAddressFromStorage,
-    },
-    auth: { userInfo: userInfoFromStorage },
-}
-
-const middleware = [thunk]
-
-// @ts-ignore
-const store = createStore(reducers, initialState,
-    composeWithDevTools(applyMiddleware(...middleware)))
 export type RootState = ReturnType<typeof reducers>
 
-export default store

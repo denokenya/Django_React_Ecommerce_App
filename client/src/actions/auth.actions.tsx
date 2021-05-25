@@ -36,8 +36,7 @@ export const login = (email: string, password: string) => async (dispatch: Dispa
             type: LOGIN_SUCCESS,
             payload: data
         })
-
-        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('my_token', data.token);
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
@@ -67,8 +66,7 @@ export const register = (name: string, email: string, password: string) => async
             type: LOGIN_SUCCESS,
             payload: data
         });
-
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('my_token', data.token);
     } catch (error) {
         dispatch({
             type: REGISTER_FAIL,

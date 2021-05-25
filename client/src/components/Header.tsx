@@ -2,13 +2,12 @@ import { logout } from 'actions/auth.actions';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { isAdmin, isAuth } from 'utils';
 import { RootState } from 'store';
 import { IUser } from 'interfaces/user.interfaces';
 
 const Header = () => {
     const dispatch = useDispatch();
-    const { loggedInUser } = useSelector((state: RootState) => state.auth);
+    const { user, isAuth  } = useSelector((state: RootState) => state.auth);
     const handleLogout = () => dispatch(logout());
     
     return (
@@ -35,8 +34,8 @@ const Header = () => {
                                     </LinkContainer>
                                 )
                             }
-                            {isAuth && !isAdmin && (
-                                <NavDropdown title={(loggedInUser as IUser).name} id='username'>
+                            {isAuth && !(user as IUser).isAdmin && (
+                                <NavDropdown title={(user as IUser).name} id='username'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>Profile</NavDropdown.Item>
                                     </LinkContainer>
@@ -45,7 +44,7 @@ const Header = () => {
 
                                 </NavDropdown>
                             )}
-                            {isAuth && isAdmin && (
+                            {isAuth && (user as IUser).isAdmin && (
                                 <NavDropdown title='Admin' id='adminmenue'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>Profile</NavDropdown.Item>

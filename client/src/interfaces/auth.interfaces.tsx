@@ -8,15 +8,12 @@ import {
     REGISTER_FAIL,
 } from 'constants/auth.constants'; import { IUser } from './user.interfaces';
 
-export interface IAuth {
-
-}
 
 export interface AuthState {
-    authLoading: boolean
-    loggedInUser: IUser | null
+    user: IUser | null
     isAuth: false
-    authError: ''
+    error: ''
+    loading: boolean
 }
 
 // actions

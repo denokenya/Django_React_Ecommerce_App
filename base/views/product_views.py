@@ -14,7 +14,7 @@ from rest_framework import status
 @api_view(["GET"])
 def getProducts(request):
     # query for searching
-    query = request.query__params.get('keyword')
+    query = request.query_params.get('keyword')
     if query == None:
         query = ''
 

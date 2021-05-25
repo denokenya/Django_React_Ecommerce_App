@@ -1,12 +1,8 @@
-const localUser = localStorage.getItem('user');
-const user = JSON.parse(localUser as string);
-
-export const isAuth = user.token ? true : false;
-export const isAdmin = user.isAdmin ? true : false;
+const token = localStorage.getItem('my_token');
 
 export const config = {
     headers: {
         'Content-type': 'application/json',
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
     }
 }

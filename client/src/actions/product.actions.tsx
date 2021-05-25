@@ -24,7 +24,6 @@ import {
     PRODUCT_CREATE_FAIL,
 } from 'constants/product.constants';
 import { Dispatch } from 'react';
-import { IUser } from 'interfaces/user.interfaces';
 import { config } from 'utils';
 
 
@@ -69,25 +68,29 @@ export const getTopProducts = () => async (dispatch: Dispatch<ProductActions>) =
     }
 }
 
-export const getroductDetails = (id: string) => async (dispatch: Dispatch<ProductActions>) => {
+export const getProductDetails = (id: string) => async (dispatch: Dispatch<ProductActions>) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/products/${id}`)
+        const res = await axios.get(`/api/products/${id}/`);
+        console.log(res.data);
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
-            payload: data
-        })
+            payload: {
+                            // @ts-ignore
+                hello: 'hello'
+            }
+        });
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
-        })
-    }
-}
+        });
+    };
+};
 
 export const deleteProduct = (id: string) => async (dispatch: Dispatch<ProductActions>) => {
     try {
@@ -96,7 +99,7 @@ export const deleteProduct = (id: string) => async (dispatch: Dispatch<ProductAc
         })
 
         const { data } = await axios.delete(
-            `/api/products${id}/delete/`,
+            `/api/products/${id}/delete/`,
             config
         )
 
@@ -167,7 +170,7 @@ export const updateProduct = (product: IProduct) => async (dispatch: Dispatch<Pr
     }
 }
 
-export const createProductReview = (productId: string, review: IReview) => async (dispatch: Dispatch<ProductActions>) => {
+export const createProductReview = (productId: string, review: number, comment?: any) => async (dispatch: Dispatch<ProductActions>) => {
     try {
         dispatch({
             type: PRODUCT_CREATE_REVIEW_REQUEST

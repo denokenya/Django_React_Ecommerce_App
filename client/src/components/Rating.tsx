@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 interface RatingProps {
     value: number
-    text: string
+    text?: string
     color: string
 }
 
@@ -16,39 +16,60 @@ const Rating: FC<RatingProps> = ({ value, text, color }) => {
                         : value >= 0.5
                             ? 'fas fa-star-half-alt'
                             : 'far fa-star'
-                }></i>
+                }>
+
+                </i>
+            </span>
+
+            <span>
                 <i style={{ color }} className={
                     value >= 2
                         ? 'fas fa-star'
                         : value >= 1.5
                             ? 'fas fa-star-half-alt'
                             : 'far fa-star'
-                }></i>
+                }>
+
+                </i>
+            </span>
+
+            <span>
                 <i style={{ color }} className={
                     value >= 3
                         ? 'fas fa-star'
                         : value >= 2.5
                             ? 'fas fa-star-half-alt'
                             : 'far fa-star'
-                }></i>
+                }>
+
+                </i>
+            </span>
+
+            <span>
                 <i style={{ color }} className={
                     value >= 4
                         ? 'fas fa-star'
                         : value >= 3.5
                             ? 'fas fa-star-half-alt'
                             : 'far fa-star'
-                }></i>
+                }>
+
+                </i>
+            </span>
+
+            <span>
                 <i style={{ color }} className={
-                    value === 5
+                    value >= 5
                         ? 'fas fa-star'
                         : value >= 4.5
                             ? 'fas fa-star-half-alt'
                             : 'far fa-star'
-                }></i>
+                }>
+
+                </i>
             </span>
-            <span>
-                {text && text} 
-            </span>
+
+            <span>{text && text}</span>
         </div>
     )
 }

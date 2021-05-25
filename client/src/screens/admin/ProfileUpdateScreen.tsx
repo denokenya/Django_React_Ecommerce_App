@@ -33,10 +33,9 @@ const ProfileUpdateScreen = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: USER_UPDATE_RESET })
-            history.push('/admin/userlist')
+            history.push('/admin/users_manage')
         } else {
-            // @ts-ignore
-            if (!(user as IUser).name || (user as IUser)._id !== Number(id)) {
+            if (!(user as IUser).name) {
                 dispatch(getUserDetails(id))
             } else {
                 setUserData({

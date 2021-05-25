@@ -31,7 +31,7 @@ const ProfileScreen = () => {
     const { userInfo } = state.auth;
 
     useEffect(() => {
-        if (!user || !(user as IUser).name || success || (userInfo as IUser)._id !== (user as IUser)._id) {
+        if (!user || !(user as IUser).name || success) {
             dispatch({ type: USER_UPDATE_PROFILE_RESET })
             dispatch(getUserDetails('profile'));
         } else {
