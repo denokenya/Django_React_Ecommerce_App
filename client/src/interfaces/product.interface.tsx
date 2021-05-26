@@ -50,6 +50,17 @@ export interface IReview {
     createdAt: Date
 }
 
+export interface IProductForm {
+    _id?: string
+    name: string
+    price: number
+    brand: string
+    category: string
+    countInStock: number
+    description: string,
+    image?: any 
+}
+
 export interface ProductState {
     products: IProduct[]
     product: IProduct | null

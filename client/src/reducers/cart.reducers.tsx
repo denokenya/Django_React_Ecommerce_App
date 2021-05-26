@@ -13,7 +13,7 @@ const initialState: CartState = {
     paymentMethod: ''
 }
 
-const cartReducer = (state = initialState, action: CartActions) => {
+const cartReducer = (state = initialState, action: CartActions): CartState => {
     switch (action.type) {
         case CART_ADD_ITEM:
             const item = action.payload

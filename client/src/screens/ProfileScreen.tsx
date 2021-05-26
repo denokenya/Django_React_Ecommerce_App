@@ -27,8 +27,7 @@ const ProfileScreen = () => {
 
     // redux
     const state = useSelector((state: RootState) => state);
-    const { error, loading, user, success } = state.user;
-    const { userInfo } = state.auth;
+    const { error, user, success } = state.user;
 
     useEffect(() => {
         if (!user || !(user as IUser).name || success) {
@@ -42,7 +41,7 @@ const ProfileScreen = () => {
                 confirmPassword: ''
             })
         }
-    }, [dispatch, history, success, user, userInfo]);
+    }, [dispatch, history, success, user]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()

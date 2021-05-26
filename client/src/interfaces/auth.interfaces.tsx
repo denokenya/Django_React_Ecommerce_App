@@ -11,8 +11,8 @@ import {
 
 export interface AuthState {
     user: IUser | null
-    isAuth: false
-    error: ''
+    isAuth: boolean
+    error: string
     loading: boolean
 }
 

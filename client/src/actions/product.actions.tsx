@@ -32,18 +32,20 @@ export const getProducts = (keyword = '') => async (dispatch: Dispatch<ProductAc
         dispatch({ type: PRODUCT_LIST_REQUEST });
 
         const { data } = await axios.get(`/api/products${keyword}`)
-
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
         });
+
+        return Promise.resolve(data);
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
-        })
+        });
+        return Promise.reject(error);
     }
 }
 
@@ -72,16 +74,12 @@ export const getProductDetails = (id: string) => async (dispatch: Dispatch<Produ
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const res = await axios.get(`/api/products/${id}/`);
-        console.log(res.data);
-
+        const { data } = await axios.get(`/api/products/${id}/`);
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
-            payload: {
-                            // @ts-ignore
-                hello: 'hello'
-            }
+            payload: data
         });
+        return Promise.resolve(data);
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
@@ -89,6 +87,7 @@ export const getProductDetails = (id: string) => async (dispatch: Dispatch<Produ
                 ? error.response.data.detail
                 : error.message,
         });
+        return Promise.reject(error);
     };
 };
 

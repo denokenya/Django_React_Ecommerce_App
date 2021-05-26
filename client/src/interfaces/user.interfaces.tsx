@@ -42,8 +42,7 @@ export interface UserState {
     success: boolean
     loading: boolean
     users: IUser[]
-    user?: IUser
-    userInfo?: IUser
+    user: IUser | null
     error: string
 }
 

@@ -25,72 +25,60 @@ const initialState: UserState = {
     success: false,
     loading: false,
     users: [],
+    user: null,
     error: ''
 }
 
-const userReducer = (state = initialState, action: UserActions) => {
+const userReducer = (state = initialState, action: UserActions): UserState => {
     switch (action.type) {
         // user details
         case USER_DETAILS_REQUEST:
             return { ...state, loading: true }
-
         case USER_DETAILS_SUCCESS:
-            return { loading: false, user: action.payload }
-
+            return { ...state, loading: false, user: action.payload }
         case USER_DETAILS_FAIL:
-            return { loading: false, error: action.payload }
-
+            return { ...state, loading: false, error: action.payload }
         case USER_DETAILS_RESET:
-            return { user: {} }
+            return { ...state, user: null }
 
-        // user profile update
         case USER_UPDATE_PROFILE_REQUEST:
-            return { loading: true }
-
+            return { ...state, loading: true }
         case USER_UPDATE_PROFILE_SUCCESS:
-            return { loading: false, success: true, userInfo: action.payload }
-
+            return { 
+                ...state, 
+                loading: false, 
+                success: true, 
+                user: action.payload 
+            }
         case USER_UPDATE_PROFILE_FAIL:
-            return { loading: false, error: action.payload }
-
+            return { ...state, loading: false, error: action.payload }
         case USER_UPDATE_PROFILE_RESET:
-            return {}
+            return { ...state }
 
-        // get users
         case USER_LIST_REQUEST:
-            return { loading: true }
-
+            return { ...state, loading: true }
         case USER_LIST_SUCCESS:
-            return { loading: false, users: action.payload }
-
+            return { ...state, loading: false, users: action.payload }
         case USER_LIST_FAIL:
-            return { loading: false, error: action.payload }
-
+            return { ...state, loading: false, error: action.payload }
         case USER_LIST_RESET:
-            return { users: [] }
+            return { ...state }
 
-        // delete user
         case USER_DELETE_REQUEST:
-            return { loading: true }
-
+            return { ...state, loading: true }
         case USER_DELETE_SUCCESS:
-            return { loading: false, success: true }
-
+            return { ...state, loading: false, success: true }
         case USER_DELETE_FAIL:
-            return { loading: false, error: action.payload }
+            return { ...state, loading: false, error: action.payload }
 
-        // update user
         case USER_UPDATE_REQUEST:
-            return { loading: true }
-
+            return { ...state, loading: true }
         case USER_UPDATE_SUCCESS:
-            return { loading: false, success: true }
-
+            return { ...state, loading: false, success: true }
         case USER_UPDATE_FAIL:
-            return { loading: false, error: action.payload }
-
+            return { ...state, loading: false, error: action.payload }
         case USER_UPDATE_RESET:
-            return { user: {} }
+            return { ...state }
 
         default:
             return state

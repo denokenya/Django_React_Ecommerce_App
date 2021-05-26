@@ -14,16 +14,14 @@ const UserListScreen = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const state = useSelector((state: RootState) => state);
-    const { userInfo } = state.auth;
-    const { error, loading, users, success } = state.user;
+    const { user } = state.auth;
+    const { error, loading, users } = state.user;
 
     useEffect(() => {
-        if (userInfo && (userInfo as IUser).isAdmin) {
-            dispatch(getUsers())
-        } else {
-            history.push('/auth/login')
+        if (user && user.isAdmin) {
+            dispatch(getUsers());
         }
-    }, [dispatch, history, userInfo]);
+    }, [dispatch, history, user]);
 
     const handleDeleteUser = (id: string) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
@@ -51,7 +49,6 @@ const UserListScreen = () => {
                             </thead>
 
                             <tbody>
-                                {/* @ts-ignore */}
                                 {users.map((user: IUser) => (
                                     <tr key={user._id}>
                                         <td>{user._id}</td>

@@ -36,12 +36,11 @@ const initialState: ProductState = {
     success: false
 }
 
-const productListReducer = (state = initialState, action: ProductActions) => {
+const productReducer = (state = initialState, action: ProductActions): ProductState => {
     switch (action.type) {
         // product list
         case PRODUCT_LIST_REQUEST:
             return { ...state, loading: true, products: [] }
-
         case PRODUCT_LIST_SUCCESS:
             return {
                 ...state,
@@ -50,28 +49,24 @@ const productListReducer = (state = initialState, action: ProductActions) => {
                 page: action.payload.page,
                 pages: action.payload.pages
             }
-
         case PRODUCT_LIST_FAIL:
             return { ...state, loading: false, error: action.payload }
 
         // product detail
         case PRODUCT_DETAILS_REQUEST:
             return { ...state, loading: true }
-
         case PRODUCT_DETAILS_SUCCESS:
             return { 
                 ...state,
                 loading: false, 
                 product: action.payload
             }
-
         case PRODUCT_DETAILS_FAIL:
             return { ...state, loading: false, error: action.payload }
 
         // delete product
         case PRODUCT_DELETE_REQUEST:
             return { ...state, loading: true }
-
         case PRODUCT_DELETE_SUCCESS:
             return { 
                 ...state,
@@ -85,49 +80,38 @@ const productListReducer = (state = initialState, action: ProductActions) => {
         // create product
         case PRODUCT_CREATE_REQUEST:
             return { ...state, loading: true }
-
         case PRODUCT_CREATE_SUCCESS:
             return { ...state, loading: false, success: true, product: action.payload }
-
         case PRODUCT_CREATE_FAIL:
             return { ...state, loading: false, error: action.payload }
-
         case PRODUCT_CREATE_RESET:
-            return {}
+            return { ...state }
 
         // product update
         case PRODUCT_UPDATE_REQUEST:
             return { ...state, loading: true }
-
         case PRODUCT_UPDATE_SUCCESS:
             return { ...state, loading: false, success: true, product: action.payload }
-
         case PRODUCT_UPDATE_FAIL:
             return { ...state, loading: false, error: action.payload }
-
         case PRODUCT_UPDATE_RESET:
-            return { ...state, product: {} }
+            return { ...state, product: null }
 
         // product review
         case PRODUCT_CREATE_REVIEW_REQUEST:
             return { ...state, loading: true }
-
         case PRODUCT_CREATE_REVIEW_SUCCESS:
             return { ...state, loading: false, success: true, }
-
         case PRODUCT_CREATE_REVIEW_FAIL:
             return { ...state, loading: false, error: action.payload }
-
         case PRODUCT_CREATE_REVIEW_RESET:
-            return {}
+            return { ...state }
 
         // top selling product
         case PRODUCT_TOP_REQUEST:
             return { ...state, loading: true, products: [] }
-
         case PRODUCT_TOP_SUCCESS:
             return { ...state, loading: false, products: action.payload, }
-
         case PRODUCT_TOP_FAIL:
             return { ...state, loading: false, error: action.payload }
 
@@ -137,4 +121,4 @@ const productListReducer = (state = initialState, action: ProductActions) => {
 }
 
 
-export default productListReducer;
+export default productReducer;

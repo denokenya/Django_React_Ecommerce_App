@@ -1,21 +1,26 @@
+import React, { Suspense } from 'react';
 import { Container } from 'react-bootstrap';
-// screens
-import HomeScreen from 'screens/HomeScreen';
-import LoginScreen from 'screens/auth/LoginScreen';
-import RegisterScreen from 'screens/auth/RegisterScreen';
-import ProfileScreen from 'screens/ProfileScreen';
-import ProfileUpdateScreen from 'screens/admin/ProfileUpdateScreen';
-import UserListScreen from 'screens/admin/UserListScreen';
-import ProductScreen from 'screens/product/ProductScreen';
-import ProductListScreen from 'screens/product/ProductListScreen';
-import ProductEditScreen from 'screens/product/ProductEditScreen';
 // routes
 import PrivateRoute from './auth/PrivateRoute';
 import PublicRoute from './auth/PublicRoute';
+import Loader from './reusable/Loader';
+// screens
+const HomeScreen = React.lazy(() => import('screens/HomeScreen'));
+const LoginScreen = React.lazy(() => import('screens/auth/LoginScreen'));
+const RegisterScreen = React.lazy(() => import('screens/auth/RegisterScreen'));
+const ProfileScreen = React.lazy(() => import('screens/ProfileScreen'));
+const ProfileUpdateScreen = React.lazy(() => import('screens/admin/ProfileUpdateScreen'));
+const UserListScreen = React.lazy(() => import('screens/admin/UserListScreen'));
+const ProductScreen = React.lazy(() => import('screens/product/ProductScreen'));
+const ProductListScreen = React.lazy(() => import('screens/product/ProductListScreen'));
+const ProductEditScreen = React.lazy(() => import('screens/product/ProductEditScreen'));
+
+
 
 const AppRoutes = () => {
     return (
-        <Container>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Container>
             <PublicRoute restricted={false} path='/' component={HomeScreen} exact />
             <PublicRoute restricted={true} path="/auth/login" component={LoginScreen} />
             <PublicRoute restricted={true} path="/auth/register" component={RegisterScreen} />
@@ -28,6 +33,7 @@ const AppRoutes = () => {
             <PrivateRoute path='/admin/:id/update' component={ProfileUpdateScreen} />
             <PrivateRoute path='/admin/userlist' component={UserListScreen} />
         </Container>
+        </Suspense>
     )
 }
 

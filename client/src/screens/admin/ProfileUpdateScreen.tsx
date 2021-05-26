@@ -28,7 +28,6 @@ const ProfileUpdateScreen = () => {
     // redux
     const state = useSelector((state: RootState) => state);
     const { error, loading, user, success } = state.user;
-    const { userInfo } = state.auth;
 
     useEffect(() => {
         if (success) {
@@ -45,11 +44,11 @@ const ProfileUpdateScreen = () => {
                 setIsAdmin((user as IUser).isAdmin as boolean);
             }
         }
-    }, [dispatch, history, id, success, user, userInfo]);
+    }, [dispatch, history, id, success, user]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-        dispatch(updateUser(userInfo));
+        dispatch(updateUser(user as IUser));
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

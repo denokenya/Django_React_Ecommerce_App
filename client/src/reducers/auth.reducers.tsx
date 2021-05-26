@@ -9,6 +9,7 @@ import {
 } from 'constants/auth.constants';
 import { AuthActions, AuthState } from 'interfaces/auth.interfaces';
 
+
 const initialState: AuthState = {
     isAuth: false,
     user: null,
@@ -16,11 +17,12 @@ const initialState: AuthState = {
     loading: false,
 };
 
-export const authReducer =  (state = initialState, action: AuthActions) => {
+export const authReducer =  (state = initialState, action: AuthActions): AuthState => {
     switch (action.type) {
         case LOGIN_REQUEST: 
         case REGISTER_REQUEST:
             return { ...state, loading: true };
+
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
             return { 
@@ -29,11 +31,13 @@ export const authReducer =  (state = initialState, action: AuthActions) => {
                 user: action.payload,
                 isAuth: true
             };
+            
         case LOGIN_FAIL:
         case REGISTER_FAIL:
             return { ...state, loading: false, error: action.payload };
+
         case LOGOUT:
-            return { ...state, isAuth: false };
+            return { ...state, isAuth: false, user: null };
         default:
             return state
     }

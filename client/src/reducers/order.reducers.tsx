@@ -32,13 +32,10 @@ const initialState: OrderState = {
     orders: []
 }
 
-const orderCreateReducer = (state = initialState, action: OrderActions) => {
+const orderCreateReducer = (state = initialState, action: OrderActions): OrderState=> {
     switch (action.type) {
         case ORDER_CREATE_REQUEST:
-            return {
-                loading: true
-            }
-
+            return { ...state, loading: true }
         case ORDER_CREATE_SUCCESS:
             return {
                 ...state,
@@ -46,112 +43,55 @@ const orderCreateReducer = (state = initialState, action: OrderActions) => {
                 success: true,
                 order: action.payload
             }
-
         case ORDER_CREATE_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
-
+            return { ...state, loading: false, error: action.payload }
         case ORDER_CREATE_RESET:
-            return {}
+            return { ...state }
 
         case ORDER_DETAILS_REQUEST:
-            return {
-                ...state,
-                loading: true
-            }
-
+            return { ...state, loading: true }
         case ORDER_DETAILS_SUCCESS:
-            return {
-                loading: false,
-                order: action.payload
-            }
-
+            return { ...state, loading: false, order: action.payload }
         case ORDER_DETAILS_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
+            return { ...state, loading: false, error: action.payload }
 
         case ORDER_PAY_REQUEST:
-            return {
-                loading: true
-            }
-
+            return { ...state, loading: true }
         case ORDER_PAY_SUCCESS:
             return {
+                ...state, 
                 loading: false,
                 success: true
             }
-
         case ORDER_PAY_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
-
+            return { ...state, loading: false, error: action.payload }
         case ORDER_PAY_RESET:
-            return {}
+            return { ...state }
 
         case ORDER_DELIVER_REQUEST:
-            return {
-                loading: true
-            }
-
+            return { ...state, loading: true }
         case ORDER_DELIVER_SUCCESS:
-            return {
-                loading: false,
-                success: true
-            }
-
+            return { ...state, loading: false, success: true }
         case ORDER_DELIVER_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
-
+            return { ...state, loading: false, error: action.payload }
         case ORDER_DELIVER_RESET:
-            return {}
+            return { ...state }
 
         case ORDER_LIST_MY_REQUEST:
-            return {
-                loading: true
-            }
-
+            return { ...state, loading: true }
         case ORDER_LIST_MY_SUCCESS:
-            return {
-                loading: false,
-                orders: action.payload
-            }
-
+            return { ...state, loading: false, orders: action.payload }
         case ORDER_LIST_MY_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
-
+            return { ...state, loading: false, error: action.payload }
         case ORDER_LIST_MY_RESET:
-            return {
-                orders: []
-            }
+            return { ...state, orders: [] }
 
         case ORDER_LIST_REQUEST:
-            return {
-                loading: true
-            }
-
+            return { ...state, loading: true }
         case ORDER_LIST_SUCCESS:
-            return {
-                loading: false,
-                orders: action.payload
-            }
-
+            return { ...state, loading: false, orders: action.payload }
         case ORDER_LIST_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
+            return { ...state, loading: false, error: action.payload }
 
         default:
             return state

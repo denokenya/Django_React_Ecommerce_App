@@ -23,7 +23,7 @@ import { AuthActions } from 'interfaces/auth.interfaces';
 import { config } from 'utils';
 
 
-export const getUserDetails = (id: string) => async (dispatch: Dispatch<UserActions>, getState: any) => {
+export const getUserDetails = (id: string) => async (dispatch: Dispatch<UserActions>) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
 
@@ -52,22 +52,23 @@ export const getUsers = () => async (dispatch: Dispatch<UserActions>) => {
         dispatch({ type: USER_LIST_REQUEST });
 
         // get users
-        const { data } = await axios.get(
-            `/api/users/`,
-            config
-        )
+        const { data } = await axios.get(`/api/users/`, config);
+        console.log(data);
 
         dispatch({
             type: USER_LIST_SUCCESS,
             payload: data
-        })
+        });
+
+        return Promise.resolve(data);
     } catch (error) {
         dispatch({
             type: USER_LIST_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
-        })
+        });
+        return Promise.reject(error);
     }
 }
 

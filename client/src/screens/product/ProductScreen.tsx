@@ -23,7 +23,7 @@ const ProductScreen = () => {
     const [comment, setComment] = useState('')
 
     // redux
-    const { userInfo } = useSelector((state: RootState) => state.auth);
+    const { user } = useSelector((state: RootState) => state.user);
     const { loading, error, success, product } = useSelector((state: RootState) => state.product)
 
 
@@ -169,7 +169,7 @@ const ProductScreen = () => {
                                             {success && <Message variant='success'>Review Submitted</Message>}
                                             {error && <Message variant='danger'>{error}</Message>}
 
-                                            {userInfo ? (
+                                            {user ? (
                                                 <Form onSubmit={handleSubmit}>
                                                     <Form.Group controlId='rating'>
                                                         <Form.Label>Rating</Form.Label>
