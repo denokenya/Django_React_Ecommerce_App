@@ -5,21 +5,21 @@ import {
     CART_SAVE_PAYMENT_METHOD,
     CART_CLEAR_ITEMS,
 } from 'constants/cart.constants';
+import { IOrder } from './order.interfaces';
 import { IProduct } from './product.interface';
 
 export interface IOrderItem {
-    _id: string
-    product: IProduct
-    order: any
+    _id?: string
+    product: IProduct | string
+    order?: IOrder
     name: string
     qty: number
     price: number
     image: string
+    countInStock: number
 }
 
 export interface IShippingAddress {
-    _id: string
-    order: any
     address: string
     city: string
     postalCode: string
@@ -40,7 +40,7 @@ interface CartAddItem {
 
 interface CartRemoveItem {
     type: typeof CART_REMOVE_ITEM
-    payload: IProduct
+    payload: string
 }
 
 interface CartSaveShippingAddress {

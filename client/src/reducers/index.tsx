@@ -3,7 +3,7 @@ import user from './user.reducers';
 import { authReducer } from './auth.reducers';
 import cart from './cart.reducers';
 import product from './product.reducers';
-import order from './product.reducers';
+import order from './order.reducers';
 
 const rootReducer = combineReducers({
     user,

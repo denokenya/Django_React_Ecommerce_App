@@ -29,10 +29,12 @@ const initialState: OrderState = {
     error: '',
     success: false,
     order: undefined,
-    orders: []
+    orders: [],
+    isPaid: false,
+    isDelivered: false
 }
 
-const orderCreateReducer = (state = initialState, action: OrderActions): OrderState=> {
+const orderReducer = (state = initialState, action: OrderActions): OrderState => {
     switch (action.type) {
         case ORDER_CREATE_REQUEST:
             return { ...state, loading: true }
@@ -61,7 +63,7 @@ const orderCreateReducer = (state = initialState, action: OrderActions): OrderSt
             return {
                 ...state, 
                 loading: false,
-                success: true
+                isPaid: true
             }
         case ORDER_PAY_FAIL:
             return { ...state, loading: false, error: action.payload }
@@ -71,7 +73,7 @@ const orderCreateReducer = (state = initialState, action: OrderActions): OrderSt
         case ORDER_DELIVER_REQUEST:
             return { ...state, loading: true }
         case ORDER_DELIVER_SUCCESS:
-            return { ...state, loading: false, success: true }
+            return { ...state, loading: false, isDelivered: true }
         case ORDER_DELIVER_FAIL:
             return { ...state, loading: false, error: action.payload }
         case ORDER_DELIVER_RESET:
@@ -98,4 +100,4 @@ const orderCreateReducer = (state = initialState, action: OrderActions): OrderSt
     }
 }
 
-export default orderCreateReducer;
+export default orderReducer;

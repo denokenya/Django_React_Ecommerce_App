@@ -22,8 +22,11 @@ import {
     ORDER_DELIVER_FAIL,
     ORDER_DELIVER_RESET,
 } from 'constants/order.constants';
+import { IOrderItem } from './cart.interfaces';
+import { IUser } from './user.interfaces';
 
 export interface IOrder {
+    user: IUser;
     _id: string
     paymentMethod: string
     taxPrice: number
@@ -34,6 +37,9 @@ export interface IOrder {
     isDelivered: boolean
     deliveredAt: Date
     createdAt: Date
+    itemsPrice?: string
+    orderItems: IOrderItem[]
+    shippingAddress: IOrderShippingAddress
 }
 
 export interface OrderState {
@@ -42,6 +48,15 @@ export interface OrderState {
     success: boolean
     order?: IOrder
     orders: IOrder[]
+    isPaid: boolean
+    isDelivered: boolean
+}
+
+export interface IOrderShippingAddress {
+    address: string
+    city: string
+    postalCode: string
+    country: string
 }
 
 // actions
