@@ -13,7 +13,7 @@ import Loader from 'components/reusable/Loader';
 import { Form, Button } from 'react-bootstrap'
 
 
-const ProfileUpdateScreen = () => {
+const UserEditScreen = () => {
     const dispatch = useDispatch();
     const { id } = useParams<IParams>();
     console.log(id);
@@ -114,4 +114,4 @@ const ProfileUpdateScreen = () => {
     )
 }
 
-export default ProfileUpdateScreen
+export default UserEditScreen

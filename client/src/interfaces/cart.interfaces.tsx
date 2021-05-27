@@ -30,6 +30,10 @@ export interface CartState {
     cartItems: IOrderItem[]
     shippingAddress: IShippingAddress | null
     paymentMethod: any 
+    itemsPrice: number | string
+    shippingPrice: number | string
+    taxPrice: number | string
+    totalPrice: number | string
 }
 
 // actions

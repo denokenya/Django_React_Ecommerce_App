@@ -10,7 +10,11 @@ import { CartActions, CartState } from 'interfaces/cart.interfaces';
 const initialState: CartState = {
     cartItems: [],
     shippingAddress: null,
-    paymentMethod: ''
+    paymentMethod: '',
+    itemsPrice: 0,
+    shippingPrice: 0,
+    taxPrice: 0,
+    totalPrice: 0
 }
 
 const cartReducer = (state = initialState, action: CartActions): CartState => {

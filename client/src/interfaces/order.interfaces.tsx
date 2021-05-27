@@ -26,17 +26,17 @@ import { IOrderItem } from './cart.interfaces';
 import { IUser } from './user.interfaces';
 
 export interface IOrder {
-    user: IUser;
-    _id: string
+    user?: IUser;
+    _id?: string
     paymentMethod: string
     taxPrice: number
     shippingPrice: number
     totalPrice: number
-    isPaid: boolean
-    paidAt: Date
-    isDelivered: boolean
-    deliveredAt: Date
-    createdAt: Date
+    isPaid?: boolean
+    paidAt?: Date
+    isDelivered?: boolean
+    deliveredAt?: Date
+    createdAt?: Date
     itemsPrice?: string
     orderItems: IOrderItem[]
     shippingAddress: IOrderShippingAddress

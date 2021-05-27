@@ -6,7 +6,7 @@ interface PaginateProps {
     pages: number
     page: number
     keyword: string
-    isAdmin: boolean
+    isAdmin?: boolean
 }
 
 const Paginate: FC<PaginateProps> = ({ pages, page, keyword = '', isAdmin = false }) => {

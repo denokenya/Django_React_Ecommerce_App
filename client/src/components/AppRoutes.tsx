@@ -9,7 +9,7 @@ const HomeScreen = React.lazy(() => import('screens/HomeScreen'));
 const LoginScreen = React.lazy(() => import('screens/auth/LoginScreen'));
 const RegisterScreen = React.lazy(() => import('screens/auth/RegisterScreen'));
 const ProfileScreen = React.lazy(() => import('screens/ProfileScreen'));
-const ProfileUpdateScreen = React.lazy(() => import('screens/admin/ProfileUpdateScreen'));
+const UserEditScreen = React.lazy(() => import('screens/admin/UserEditScreen'));
 const UserListScreen = React.lazy(() => import('screens/admin/UserListScreen'));
 const ProductScreen = React.lazy(() => import('screens/product/ProductScreen'));
 const ProductListScreen = React.lazy(() => import('screens/product/ProductListScreen'));
@@ -26,7 +26,7 @@ const AppRoutes = () => {
             <PublicRoute restricted={true} path="/auth/register" component={RegisterScreen} />
 
             <PrivateRoute path='/profile' component={ProfileScreen} />
-            <PrivateRoute path='/admin/:id/update' component={ProfileUpdateScreen} />
+            <PrivateRoute path='/admin/:id/update' component={UserEditScreen} />
             <PrivateRoute path='/admin/userlist' component={UserListScreen} />
             <PrivateRoute path='/admin/user/:id/update' component={ProfileEditScreen} />
 

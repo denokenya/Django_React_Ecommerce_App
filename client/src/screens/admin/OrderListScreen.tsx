@@ -7,6 +7,7 @@ import { } from 'actions/order.actions';
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'store';
 import { getOrders } from 'actions/order.actions';
+import { IOrder } from 'interfaces/order.interfaces';
 
 const OrderListScreen = () => {
     const dispatch = useDispatch();
@@ -41,22 +42,22 @@ const OrderListScreen = () => {
                             </thead>
 
                             <tbody>
-                                {orders.map(order => (
+                                {orders.map((order: IOrder) => (
                                     <tr key={order._id}>
                                         <td>{order._id}</td>
                                         <td>{order.user && order.user.name}</td>
-                                        <td>{order.createdAt.toString().substring(0, 10)}</td>
+                                        <td>{order.createdAt?.toString().substring(0, 10)}</td>
                                         <td>${order.totalPrice}</td>
 
                                         <td>{order.isPaid ? (
-                                            order.paidAt.toString().substring(0, 10)
+                                            order.paidAt?.toString().substring(0, 10)
                                         ) : (
                                             <i className='fas fa-check' style={{ color: 'red' }}></i>
                                         )}
                                         </td>
 
                                         <td>{order.isDelivered ? (
-                                            order.deliveredAt.toString().substring(0, 10)
+                                            order.deliveredAt?.toString().substring(0, 10)
                                         ) : (
                                             <i className='fas fa-check' style={{ color: 'red' }}></i>
                                         )}
