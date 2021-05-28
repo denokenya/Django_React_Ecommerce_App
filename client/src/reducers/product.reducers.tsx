@@ -27,6 +27,7 @@ import {
 import { ProductActions, ProductState } from 'interfaces/product.interface';
 
 const initialState: ProductState = {
+    topProducts: [],
     products: [],
     product: null,
     loading: false,
@@ -109,9 +110,9 @@ const productReducer = (state = initialState, action: ProductActions): ProductSt
 
         // top selling product
         case PRODUCT_TOP_REQUEST:
-            return { ...state, loading: true, products: [] }
+            return { ...state, loading: true, topProducts: [] }
         case PRODUCT_TOP_SUCCESS:
-            return { ...state, loading: false, products: action.payload, }
+            return { ...state, loading: false, topProducts: action.payload }
         case PRODUCT_TOP_FAIL:
             return { ...state, loading: false, error: action.payload }
 

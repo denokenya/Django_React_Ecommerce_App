@@ -62,6 +62,7 @@ export interface IProductForm {
 }
 
 export interface ProductState {
+    topProducts: IProduct[]
     products: IProduct[]
     product: IProduct | null
     loading: boolean

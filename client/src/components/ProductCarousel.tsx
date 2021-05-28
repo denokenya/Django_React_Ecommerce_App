@@ -10,8 +10,7 @@ import { RootState } from 'store'
 function ProductCarousel() {
     const dispatch = useDispatch()
 
-    const { products, error, loading } = useSelector((state: RootState) => state.product);
-    console.log(products);
+    const { topProducts, error, loading } = useSelector((state: RootState) => state.product);
 
     useEffect(() => {
         dispatch(getTopProducts())
@@ -19,7 +18,7 @@ function ProductCarousel() {
 
     return (
         <Carousel pause='hover' className='bg-dark'>
-            {products.map(product => (
+            {topProducts.map(product => (
                 <Carousel.Item key={product._id}>
                     <Link to={`/product/${product._id}`}>
                         <Image src={product.image} alt={product.name} fluid />
